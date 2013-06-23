@@ -67,13 +67,13 @@ class MainWidget(QtGui.QWidget):
         self.wAddRecord = AddRecord(fields)
         self.wAddRecord.applyClicked.connect(self.addRecord)
         
-    def addRecord(self, args):
-        print('test')
+    def addRecord(self, text):
+        print(text)
         
             
 class AddRecord(QtGui.QWidget):
     
-    applyClicked = QtCore.Signal()
+    applyClicked = QtCore.Signal((tuple,))
     
     def __init__(self, fields):
         super(AddRecord, self).__init__()
@@ -98,8 +98,7 @@ class AddRecord(QtGui.QWidget):
         self.show()
     
     def addRecord(self):
-        args = ('test',)
-        self.applyClicked.emit(args)    
+        self.applyClicked.emit(('this is a test', 10, ))    
 
 
 def main(nameDatabase):   
@@ -110,5 +109,5 @@ def main(nameDatabase):
 
 
 if __name__ == '__main__':
-    nameDatabase = '/home/fritzarch/Code/python/DataBaseBrowser/data'
+    nameDatabase = '/home/fritzarch/Code/python/DatabaseBrowser/data'
     main(nameDatabase)
